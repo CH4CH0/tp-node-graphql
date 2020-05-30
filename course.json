@@ -1,17 +1,17 @@
 [
 	{ 
         "id": 1, 
-        "name": "Course 1" ,
-        "description": "Course 1 description"
+        "name": "Surviving the coming Zombie Apocalypse" ,
+        "description": "Survive, escape and preserve the future of civilization"
     },
 	{ 
         "id": 2, 
-        "name": "Course 2" ,
-        "description": "Course 2 description"
+        "name": "The Physics of Star Trek" ,
+        "description": "Find out if the USS Enterprise would have actually been capable of flight"
     },
 	{ 
         "id": 3, 
-        "name": "Course 3" ,
-        "description": "Course 3 description"
+        "name": "Tree Climbing" ,
+        "description": "In this course we will teach you how to get up into the canopy of any tree, to move arround, and more"
     }
 ]
