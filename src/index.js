@@ -16,30 +16,30 @@ const courses = require('../course.json');
 const grades = require('../grade.json');
 
 const StudentType = new GraphQLObjectType({
-    name: 'Student',
-    description: 'Represents students',
-    fields: () => ({
-        id: { type: GraphQLNonNull(GraphQLInt) },
-        name: { type: GraphQLNonNull(GraphQLString) },
-        lastname: { type: GraphQLNonNull(GraphQLString) },
-        courseId: { type: GraphQLNonNull(GraphQLInt) },
-        course: {
-            type: CourseType,
-            resolve: (student) => {
-                return courses.find(course => course.id === student.courseId);
-            }
-        }
-    })
+  name: "Student",
+  description: "Represents students",
+  fields: () => ({
+    id: { type: GraphQLNonNull(GraphQLInt) },
+    name: { type: GraphQLNonNull(GraphQLString) },
+    lastname: { type: GraphQLNonNull(GraphQLString) },
+    courseId: { type: GraphQLNonNull(GraphQLInt) },
+    course: {
+      type: CourseType,
+      resolve: (student) => {
+        return courses.find((course) => course.id === student.courseId);
+      },
+    },
+  }),
 });
 
 const CourseType = new GraphQLObjectType({
-    name: 'Course',
-    description: 'Represents courses',
-    fields: () => ({
-        id: { type: GraphQLNonNull(GraphQLInt) },
-        name: { type: GraphQLNonNull(GraphQLString) },
-        description: { type: GraphQLNonNull(GraphQLString) }
-    })
+  name: "Course",
+  description: "Represents courses",
+  fields: () => ({
+    id: { type: GraphQLNonNull(GraphQLInt) },
+    name: { type: GraphQLNonNull(GraphQLString) },
+    description: { type: GraphQLNonNull(GraphQLString) },
+  }),
 });
 
 const GradeType = new GraphQLObjectType({
@@ -65,14 +65,14 @@ const GradeType = new GraphQLObjectType({
     })
 });
 
-//MUTACIONES
+//Mutations
 const RootMutationType = new GraphQLObjectType({
     name: 'Mutation',
     description: 'Root mutation',
     fields: () => ({
         addStudent: {
             type: StudentType,
-            description: 'Add a student', //AGREGAR ESTUDIANTE
+            description: 'Add a student', 
             args: {
                 name: { type: GraphQLNonNull(GraphQLString) },
                 lastname: { type: GraphQLNonNull(GraphQLString) },
@@ -91,7 +91,7 @@ const RootMutationType = new GraphQLObjectType({
         },
         addCourse: {
             type: CourseType,
-            description: 'Add a course', //AGREGAR CURSO
+            description: 'Add a course', 
             args: {
                 name: { type: GraphQLNonNull(GraphQLString) },
                 description: { type: GraphQLNonNull(GraphQLString) }
@@ -108,7 +108,7 @@ const RootMutationType = new GraphQLObjectType({
         },
         addGrade: {
             type: GradeType,
-            description: 'Add a grade', //AGREGANDO UN GRADE
+            description: 'Add a grade', 
             args: {
                 courseId: { type: GraphQLNonNull(GraphQLInt) },
                 studentId: { type: GraphQLNonNull(GraphQLInt) },
@@ -127,7 +127,7 @@ const RootMutationType = new GraphQLObjectType({
         },
         removeStudent: {
             type: StudentType,
-            description: 'Delete a student', //BORRANDO UN ESTUDIANTE
+            description: 'Delete a student', 
             args: {
                 id: { type: GraphQLNonNull(GraphQLInt) }
             },
@@ -139,7 +139,7 @@ const RootMutationType = new GraphQLObjectType({
         },
         removeCurse: {
             type: CourseType,
-            description: 'Delete a course', //BORANDO UN CURSO
+            description: 'Delete a course', 
             args: {
                 id: { type: GraphQLNonNull(GraphQLInt) }
             },
@@ -151,7 +151,7 @@ const RootMutationType = new GraphQLObjectType({
         },
         removeGrade: {
             type: GradeType,
-            description: 'Remove a grade', //BORRANDO UN GRADE
+            description: 'Remove a grade', 
             args: {
                 id: { type: GraphQLNonNull(GraphQLInt) }
             },
@@ -165,8 +165,6 @@ const RootMutationType = new GraphQLObjectType({
     })
 });
 
-//1 ESTUDIANTE PUEDE ESTAER SOLO EN UN CURSO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 //ROOT QUERY
 const RootQueryType = new GraphQLObjectType({
     name: 'Query',
@@ -174,22 +172,22 @@ const RootQueryType = new GraphQLObjectType({
     fields: () => ({
         students: {
             type: new GraphQLList(StudentType),
-            description: 'List of all students', //LISTO TODOS LOS ESTUDIANTES
+            description: 'List of all students', 
             resolve: () => students
         },
         courses: {
             type: new GraphQLList(CourseType),
-            description: 'List of all courses', //LISTO TODOS LOS CURSOS
+            description: 'List of all courses', 
             resolve: () => courses
         },
         grades: {
             type: new GraphQLList(GradeType),
-            description: 'List of all grades', //LISTO TODOS LOS GRADOS CREOQ SON NOTAS 
+            description: 'List of all grades',  
             resolve: () => grades
         },
         student: {
             type: StudentType,
-            description: 'Particular student', //UN SOLO ESTUDIANTE POR ID
+            description: 'Particular student', 
             args: {
                 id: { type: GraphQLInt }
             },
@@ -197,7 +195,7 @@ const RootQueryType = new GraphQLObjectType({
         },
         course: {
             type: CourseType,
-            description: 'Particular course', //UN SOLO CURSO POR ID
+            description: 'Particular course', 
             args: {
                 id: { type: GraphQLInt }
             },
@@ -205,7 +203,7 @@ const RootQueryType = new GraphQLObjectType({
         },
         grade: {
             type: GradeType,
-            description: 'Particular grade', //UN SOLO GRADO POR ID
+            description: 'Particular grade', 
             args: {
                 id: { type: GraphQLInt }
             },

@@ -7,14 +7,14 @@
     },
 	{ 
         "id": 2, 
-        "name": "Gaston" ,
-        "lastname": "De La Cruz ",
+        "name": "Susana" ,
+        "lastname": "Distancia",
         "courseId": 1
     },
 	{ 
         "id": 3, 
-        "name": "Flavio" ,
-        "lastname": "Peralta",
+        "name": "Bad" ,
+        "lastname": "Bunny",
         "courseId": 2
     }
 ]
